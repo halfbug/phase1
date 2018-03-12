@@ -17,13 +17,13 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('father_name');
-            $table->string('gender')->nullable();
-            $table->string('religion');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('email');
-            $table->text('date_of_birth');
-            $table->string('for_class');
+            $table->string('gender');
+            $table->string('religion')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('for_class')->nullable();
             $table->timestamps();
         });
     }

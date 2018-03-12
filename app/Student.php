@@ -13,6 +13,6 @@ class Student extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'father_name','religion','address','phone','email','date_of_birth','for_class'
+        'name', 'father_name','gender','religion','address','phone','email','date_of_birth','for_class'
     ];
 }

@@ -180,7 +180,7 @@
                     </li>
                     <li>
 
-                        <a href="{{url('/customers')}}"><i class="fa fa-users fa-fw"></i> Students</a>
+                        <a href="{{url('/students')}}"><i class="fa fa-users fa-fw"></i> Students</a>
 
                     </li>
                     <li>
