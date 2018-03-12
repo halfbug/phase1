@@ -1,56 +1,122 @@
-@extends('students.layout')
-
+@extends('layouts.admin')
 
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Student</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
-            </div>
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit Student Record</h1>
         </div>
+        <!-- /.col-lg-12 -->
     </div>
-
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-
-    <form action="{{ route('students.update',$student->id) }}" method="POST">
+    <!-- /.row -->
+    <form method="post" action="{{route('students.update',$student->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
-
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $student->name }}" class="form-control" placeholder="Name">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <button type="reset" class="btn btn-lg btn-default">Reset</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-lg btn-primary pull-right ">&nbsp;&nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label >Student Name</label>
+                                    <input class="form-control"  placeholder="Name" name="name"  value="{{ $student->name }}">
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label>Father's Name </label>
+                                    <input class="form-control" placeholder="Father Name" name="father_name"  value="{{ $student->father_name}}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+
+                                    <input checked="checked" name="gender" type="radio" value="male" >Male &nbsp;
+                                    <input  name="gender" type="radio" value="female">Female
+                                </div>
+                                <div class="form-group">
+                                    <label>Religion</label>
+                                    <input class="form-control" placeholder="Enter text" name="religion" value="{{ $student->religion }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input class="form-control" placeholder="Enter text" name="address"  value="{{ $student->address }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input class="form-control" placeholder="Enter text" name="phone"  value="{{ $student->phone }}">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" placeholder="Enter text" name="email"  value="{{ $student->email }}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input class="form-control" placeholder="Enter text" name="date_of_birth"  value="{{ $student->date_of_birth }}">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Apply For Class</label>
+                                    <input class="form-control" placeholder="Enter text" name="for_class"  value="{{ $student->for_class }}">
+                                </div>
+
+
+
+
+
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <button type="reset" class="btn btn-lg btn-default">Reset</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-lg btn-primary pull-right ">&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+                <!-- /.panel -->
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Father Name:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $student->father_name }}</textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+            <!-- /.col-lg-12 -->
         </div>
-
-
+        <!-- /.row -->
     </form>
 
-
 @endsection
+
+
