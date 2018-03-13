@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Attendance Registration</h1>
+            <h1 class="page-header">Attendance Form</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -61,28 +61,41 @@
 							
 							
 							
+			</div><!-- /.row (nested) -->
+			<div class="row">
+			
 							<div class="col-lg-6">
-                                <div class="form-group" id="datatable">Mydata
-     <!--                   <table class="table table-hover" id="">
+                                <div class="form-group" id="">
+								<label>Year</label>
+                                    <input class="form-control" placeholder="Enter year of class" name="attyear">
+								</div>
+							
+							</div>
+						<!-- /.col-lg-6 (nested) -->
+			
+			</div><!-- 3rd row-->
+			<div class="row">
+			
+							<div class="col-lg-6">
+                                <div class="form-group" id="">
+                         <table class="table table-hover" id="datatable1">
                             <thead>
                                 <tr>
-                                    <th>Register No.</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Attendance</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                        </table>-->
+                        </table>
 								
 								</div>
 							
 							</div>
 						<!-- /.col-lg-6 (nested) -->
+			
 			</div>
-                        <!-- /.row (nested) -->
-
                     </div>
                     <!-- /.panel-body -->
                     <div class="panel-footer">
@@ -123,20 +136,32 @@
                 success : function(response){
 				  // compile_datatable(response);
 				      var joi=JSON.stringify(response);
+				console.log(response);
+				                    var thead='<thead><tr>'+
+                                    '<th>Register No.</th>'+
+                                    '<th>Student Name</th>'+
+                                    '<th>Attendance</th>'+
+                                    '</tr></thead>';
+					$("#datatable1").empty();
+					$("#datatable1").append('<h2>Students of '+level_name+'</h2><br>');
+					$("#datatable1").append(thead);
 
-				/* $.each(response, function(index, value) {
-						$("#datatable").append(response['name']);
-					}); */
-				for(var i=0, keys=Object.keys(response.name), l=keys.length; i<l; i++) {
-					alert(response.name[key]);
-					} 
-					  
-					  
-					  //alert(joi);
-                },
+					$.each(response, function(index, value) {
+				 
+						 var radiobtn='<div class="form-group">'+
+                    '<label class="radio-inline">'+
+                        '<input type="radio" name="'+value.id+'" value="1" checked> Present'+
+                    '</label>'+'<label class="radio-inline">'+
+                        '<input type="radio" name="'+value.id+'" value="0"> Absent'+
+                    '</label>'+'</div>';
+					$("#datatable1").append(value.name+' '+radiobtn);
+
+					})//foreach; 			  
+//success close				
+},
 				error: function(response){
-				alert('Error'+response);
-					}
+				console.log('Error'+response);
+					}//error close
   });				
 		
 		
@@ -160,7 +185,7 @@
 			$("#datatable").append([
                // value.id,  //student id as name of radiobtn
                // value.name,
-                '<div class="form-group">'+
+                var radiobtn='<div class="form-group">'+
                     '<label class="radio-inline">'+
                         '<input type="radio" name="" value="1"> Present'+
                     '</label>'+

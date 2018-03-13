@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Level;
+use App\Attendance;
 
 class AttendanceController extends Controller
 {
@@ -16,7 +17,11 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return view('attendance.index');
+         $Attn = Attendance::latest()->paginate(5);
+
+
+        return view('attendance.index',compact('Attn'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -40,7 +45,14 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      request()->validate([
+            'level_id' => 'required',
+            'attyear' => 'required',
+        ]);
+      // Attendance::create($request->all());
+
+        return redirect()->route('attendance.index')
+            ->with('success','Attendance recorded successfully.');
     }
 
     /**

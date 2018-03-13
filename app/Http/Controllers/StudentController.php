@@ -45,9 +45,9 @@ public function get_classstudents(Request $request)
                 ->get();
     //$studentslist = Student::all()->where('for_class', '=', $level_namee)->get();
 	
-    //return response()->json($studentslist);
+    return response()->json($studentslist);
 	
-    return response()->json(['response' => $studentslist]);
+    //return response()->json(['response' => $studentslist]);
 }
 
 
