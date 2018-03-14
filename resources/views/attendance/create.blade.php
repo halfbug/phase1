@@ -66,8 +66,8 @@
 			
 							<div class="col-lg-6">
                                 <div class="form-group" id="">
-								<label>Year</label>
-                                    <input class="form-control" placeholder="Enter year of class" name="attyear">
+								<label>Date</label>
+                                    <input class="form-control" placeholder="Enter date for attendance" name="datepicker" id="datepicker" readonly>
 								</div>
 							
 							</div>
@@ -150,9 +150,9 @@
 				 
 						 var radiobtn='<div class="form-group">'+
                     '<label class="radio-inline">'+
-                        '<input type="radio" name="'+value.id+'" value="1" checked> Present'+
+                        '<input type="radio" name="radio'+value.id+'" value="1" checked> Present'+
                     '</label>'+'<label class="radio-inline">'+
-                        '<input type="radio" name="'+value.id+'" value="0"> Absent'+
+                        '<input type="radio" name="radio'+value.id+'" value="0"> Absent'+
                     '</label>'+'</div>';
 					$("#datatable1").append(value.name+' '+radiobtn);
 
@@ -200,10 +200,12 @@
   	
     </script>
 
-   <!-- <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
         $('#datepicker').datepicker({
             autoclose: true,
             format: 'dd-mm-yyyy'
         });
-    </script>-->
+		$("#datepicker").datepicker({ dateFormat: "dd-mm-yyyy"}).datepicker("setDate", "0");
+    </script>
 @endsection

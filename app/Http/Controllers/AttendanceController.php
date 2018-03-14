@@ -47,11 +47,18 @@ class AttendanceController extends Controller
     {
       request()->validate([
             'level_id' => 'required',
-            'attyear' => 'required',
+			'stid.*' => 'required',
+			'datepicker' => 'required'
         ]);
       // Attendance::create($request->all());
-
-        return redirect()->route('attendance.index')
+		$name = $request->input('level_id');
+		$date = $request->input('datepicker');
+		$allstud[]=$request->get('stid');
+		foreach($this->request->get('radio') as $b => $y) {
+		echo $st_id;
+           Attendance::create(array('stid'$b => $name));
+		}
+		return redirect()->route('attendance.index')
             ->with('success','Attendance recorded successfully.');
     }
 

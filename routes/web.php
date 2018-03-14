@@ -25,5 +25,10 @@ Route::get( '/ajax-student', array(
 'as' => 'ajaxteach',
 'uses' => 'StudentController@get_classstudents'
 ));
+
+Route::resource('teachers','TeacherController');
+Route::resource('teachers.create','TeacherController@create');
+
+
 ///attendance/////////////////////
 Route::resource('attendance', 'AttendanceController');
