@@ -23,6 +23,8 @@ class CreateStudentsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('date_of_birth')->nullable();
+            $table->string('for_class')->nullable();
+
 
             $table->timestamps();
         });
