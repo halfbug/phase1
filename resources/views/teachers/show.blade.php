@@ -3,12 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header"> Student Record</h1>
+            <h1 class="page-header"> Teachers Record</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <form method="post" action="{{route('students.update',$student->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{route('teachers.update',$teachers->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -33,51 +33,51 @@
                             @endif
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label >Student Name</label>
-                                    {{ $student->name }}
+                                    <label >Teacher Name</label>
+                                    {{ $teachers->name }}
                                 </div>
 
 
 
                                 <div class="form-group">
                                     <label>Father's Name </label>
-                                   {{ $student->father_name}}
+                                   {{ $teachers->father_name}}
 
                                 </div>
                                 <div class="form-group">
                                     <label>Gender</label>
-                                    {{ $student->gender }}
+                                    {{ $teachers->gender }}
 
 
                                 </div>
                                 <div class="form-group">
                                     <label>Religion</label>
-                                   {{ $student->religion }}
+                                   {{ $teachers->religion }}
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                   {{ $student->address }}
+                                   {{ $teachers->address }}
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                   {{ $student->phone }}
+                                   {{ $teachers->phone }}
                                 </div>
 
 
                                 <div class="form-group">
                                     <label>Email</label>
-                                    {{ $student->email }}
+                                    {{ $teachers->email }}
 
                                 </div>
                                 <div class="form-group">
                                     <label>Date of Birth</label>
-                                  {{ $student->date_of_birth }}
+                                  {{ $teachers->date_of_birth }}
 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apply For Class</label>
-                                  {{ $student->for_class }}
+                                  {{ $teachers->for_class }}
                                 </div>
 
 
@@ -91,7 +91,7 @@
 
                     </div>
                     <!-- /.panel-body -->
-
+                 
                 </div>
                 <!-- /.panel -->
             </div>

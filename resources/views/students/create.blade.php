@@ -52,7 +52,8 @@
                                 <div class="form-group">
                                     <label>Gender</label>
 
-                                    <select class="itemName1 form-control"  name="gender"></select>
+                                    <input checked="checked" name="gender" type="radio" value="male" >Male &nbsp;
+                                    <input  name="gender" type="radio" value="female">Female
                                 </div>
                                 <div class="form-group">
                                     <label>Religion</label>

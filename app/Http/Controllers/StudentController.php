@@ -21,13 +21,38 @@ class StudentController extends Controller
         return view('students.index',compact('students'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+    public function indexall()
+    {
+
+        $students = Student::latest();
+
+
+        return view('students.index',compact('students'));
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+ 
+public function get_classstudents(Request $request)
+{
+    $level_namee = $request->level_name;          
+	$studentslist = \DB::table("students")
+                ->select("id","name")
+                ->where('for_class','=',$level_namee)
+                ->get();
+    //$studentslist = Student::all()->where('for_class', '=', $level_namee)->get();
+	
+    return response()->json($studentslist);
+	
+    //return response()->json(['response' => $studentslist]);
+}
+
+
+
+ public function create()
     {
         //
         return view('students.create');
