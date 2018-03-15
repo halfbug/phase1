@@ -82,7 +82,17 @@
 
                                 <div class="form-group">
                                     <label>Apply For Class</label>
-                                    <input class="form-control" placeholder="Enter text" name="for_class">
+                                    <select id="level_id" class="form-control" name="level_id" onchange="" required>
+                                        @foreach($Levels as $stclass)
+                                            <option value="{{ $stclass->name }}">{{ $stclass->name }}</option>
+                                        @endforeach
+                                        @if ($errors->has('stclass_id'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('stclass_id') }}</strong>
+                                    </span>
+                                        @endif
+
+                                    </select>
                                 </div>
 
 
@@ -121,98 +131,52 @@
 @endsection
 
 @section('script')
+
     <script>
-        $('#summernote').summernote({
-            height: 450,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']]
-            ]
-        });
-        $('#summernote1').summernote({
-            height: 200,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']]
-            ]
-        });
-        $('#summernote2').summernote({
-            height: 200,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']]
-            ]
-        });
-        $('.itemName').select2({
-            placeholder: 'Select a Company',
-            ajax: {
-                url:'{{url('/clientsearch')}}',
+        $('#level_id').on('change',function(e){
+            var level_name = $('#level_id option:selected').attr('value');
+            //$("#datatable").html(level_name);
+            //var info=$.get("{{url('ajax-student')}}",{level_name:level_name});
+            //$("#datatable").html(info);
+            $.ajax({
+                type: "GET",
+                url : "{{url('ajax-student')}}",
                 dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results:  $.map(data, function (item) {
-                            return {
-                                text: item.company_name,
-                                id: item.id
-                            }
-                        })
-                    };
+                data : {level_name:level_name},
+                success : function(response){
+                    // compile_datatable(response);
+                    var joi=JSON.stringify(response);
+                    console.log(response);
+                    var thead='<thead><tr>'+
+                        '<th>Register No.</th>'+
+                        '<th>Student Name</th>'+
+                        '<th>Attendance</th>'+
+                        '</tr></thead>';
+                    $("#datatable1").empty();
+                    $("#datatable1").append('<h2>Students of '+level_name+'</h2><br>');
+                    $("#datatable1").append(thead);
+
+                    $.each(response, function(index, value) {
+
+                        var radiobtn='<div class="form-group">'+
+                            '<label class="radio-inline">'+
+                            '<input type="radio" name="radio'+value.id+'" value="1" checked> Present'+
+                            '</label>'+'<label class="radio-inline">'+
+                            '<input type="radio" name="radio'+value.id+'" value="0"> Absent'+
+                            '</label>'+'</div>';
+                        $("#datatable1").append(value.name+' '+radiobtn);
+
+                    })//foreach;
+//success close
                 },
-                cache: true
-            }
-        });
-        $('.itemName1').select2({
-            placeholder: 'Select a Company',
-            ajax: {
-                url:'{{url('/clientsearch')}}',
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results:  $.map(data, function (item) {
-                            return {
-                                text: item.company_name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-        $('.itemName2').select2({
-            placeholder: 'Select a Company',
-            ajax: {
-                url:'{{url('/clientsearch')}}',
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results:  $.map(data, function (item) {
-                            return {
-                                text: item.company_name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-    </script>
+                error: function(response){
+                    console.log('Error'+response);
+                }//error close
+            });
+
+
+        }); //'#level_id on change
+        </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">

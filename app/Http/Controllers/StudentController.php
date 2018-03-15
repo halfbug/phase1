@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Level;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -38,16 +39,22 @@ class StudentController extends Controller
  
 public function get_classstudents(Request $request)
 {
-    $level_namee = $request->level_name;          
-	$studentslist = \DB::table("students")
-                ->select("id","name")
-                ->where('for_class','=',$level_namee)
-                ->get();
+    $level_namee = $request->level_name;
+    $studentslist = \DB::table("students")
+        ->select("id", "name")
+        ->where('for_class', '=', $level_namee)
+        ->get();
     //$studentslist = Student::all()->where('for_class', '=', $level_namee)->get();
-	
+
     return response()->json($studentslist);
-	
+
     //return response()->json(['response' => $studentslist]);
+}
+public function get_levels(Request $request)
+{
+    $levelslist = DB::table('levels')->get();
+    return view('create.blade.php',array('list'=>$levelslist));
+
 }
 
 
@@ -55,7 +62,8 @@ public function get_classstudents(Request $request)
  public function create()
     {
         //
-        return view('students.create');
+        $Levels = Level::all();
+        return view('students.create', compact('Levels'));
     }
 
     /**
@@ -74,6 +82,7 @@ public function get_classstudents(Request $request)
             'phone' => '' ,
         'date_of_birth' => '',
        'for_class' => ' ',
+            'user_id'
 
         ]);
 
