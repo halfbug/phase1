@@ -97,7 +97,7 @@
         <div class="sidenav-header d-flex align-items-center justify-content-center">
             <!-- User Info-->
             <div class="sidenav-header-inner text-center">
-                <img src="img/default.jpg" alt="person" class="img-fluid rounded-circle">
+                <img src="{{ asset('img/default.jpg')}}" alt="person" class="img-fluid rounded-circle">
                 {{--@if(Auth::user()->avatar == "default.jpg")--}}
                     {{--<img data-name="{{ Auth::user()->name }}" class="profile img-fluid rounded-circle"/>--}}
                 {{--@else--}}
@@ -115,7 +115,7 @@
                 <li><a href="index.html"> <i class="icon-home"></i>Home                             </a></li>
                 <li><a href="forms.html"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
                 <li><a href="charts.html"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>Teachers                           </a></li>
+                <li><a href="tables.html"> <i class="fa fa-user-secret"></i>Teachers                           </a></li>
                 {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>--}}
                     {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
                         {{--<li><a href="#">Page</a></li>--}}
