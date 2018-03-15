@@ -28,4 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+//    public function getRoleAttribute() {
+////        $query= \DB::table("role_user")->where("role_user.user_id","=",$this->id)
+////        ->join('roles', 'role_user.role_id', '=', 'roles.id')->pluck("roles.name");
+////        return $query[1]["name"];
+//        return "admin";
+//    }
+
 }
