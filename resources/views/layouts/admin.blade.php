@@ -96,40 +96,46 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
             <!-- User Info-->
-            <div class="sidenav-header-inner text-center"><img src="images/profile/{{ Auth::user()->avatar }}" alt="person" class="img-fluid rounded-circle">
+            <div class="sidenav-header-inner text-center">
+                <img src="img/default.jpg" alt="person" class="img-fluid rounded-circle">
+                {{--@if(Auth::user()->avatar == "default.jpg")--}}
+                    {{--<img data-name="{{ Auth::user()->name }}" class="profile img-fluid rounded-circle"/>--}}
+                {{--@else--}}
+                    {{--<img src="images/profile/{{ Auth::user()->avatar }}" alt="person" class="img-fluid rounded-circle">--}}
+                {{--@endif--}}
                 <h2 class="h5">{{ Auth::user()->name }}</h2><span>{{ Auth::user()->roles[0]["name"]}}</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
-            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> X2SMS</a></div>
+            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> >></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="index.html"> <i class="icon-home"></i>Home                             </a></li>
-                <li><a href="forms.html"> <i class="icon-form"></i>Forms                             </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts                             </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>Tables                             </a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page                             </a></li>
-                <li> <a href="#"> <i class="icon-mail"></i>Demo
+                <li><a href="forms.html"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
+                <li><a href="charts.html"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
+                <li><a href="tables.html"> <i class="icon-grid"></i>Teachers                           </a></li>
+                {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>--}}
+                    {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
+                        {{--<li><a href="#">Page</a></li>--}}
+                        {{--<li><a href="#">Page</a></li>--}}
+                        {{--<li><a href="#">Page</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                <li><a href="login.html"> <i class="icon-interface-windows"></i>Courses                             </a></li>
+                <li> <a href="#"> <i class="icon-mail"></i>Complains
                         <div class="badge badge-warning">6 New</div></a></li>
             </ul>
         </div>
         <div class="admin-menu">
-            <h5 class="sidenav-heading">Second menu</h5>
+            <h5 class="sidenav-heading">Administrations</h5>
             <ul id="side-admin-menu" class="side-menu list-unstyled">
-                <li> <a href="#"> <i class="icon-screen"> </i>Demo</a></li>
-                <li> <a href="#"> <i class="icon-flask"> </i>Demo
-                        <div class="badge badge-info">Special</div></a></li>
-                <li> <a href=""> <i class="icon-flask"> </i>Demo</a></li>
-                <li> <a href=""> <i class="icon-picture"> </i>Demo</a></li>
+                <li> <a href="{{url("/users")}}"> <i class="icon-screen"> </i>Users</a></li>
+                <li> <a href="#"> <i class="icon-flask"> </i>User Log
+                        <div class="badge badge-info">Recent Activities</div></a></li>
+                <li> <a href=""> <i class="icon-flask"> </i>Notifications</a></li>
+                <li> <a href=""> <i class="icon-picture"> </i>General Settings</a></li>
             </ul>
         </div>
     </div>
@@ -225,7 +231,14 @@
             </div>
         </nav>
     </header>
-
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active"> @yield('breadcrumb')</li>
+            </ul>
+        </div>
+    </div>
     <section class="forms">
         <div class="container-fluid">
             <!-- Page Header-->
@@ -236,10 +249,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <p>Your company &copy; 2017-2019</p>
+                    <p>X2sms &copy; 2017-2019</p>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+                    <p>Design by <a href="https://businessjot.coms" class="external">Businessjot.com</a></p>
                     <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
                 </div>
             </div>
@@ -249,7 +262,7 @@
 
 
 
-@yield('script')
+
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -264,6 +277,9 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="{{ asset('js/initial.min.js') }}"></script>
+@yield('script')
+$('.profile').initial({textColor:"#fff"});
 </body>
 
 </html>
