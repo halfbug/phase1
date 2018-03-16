@@ -53,9 +53,34 @@
                                 <div class="form-group">
                                     <label>Gender</label>
 
-                                    <input checked="checked" name="gender" type="radio" value="male" >Male &nbsp;
-                                    <input  name="gender" type="radio" value="female">Female
+                                    <input name="gender" type="radio" value="male" <?php echo ($teacher->gender=='male')?'checked':'' ?> >Male &nbsp;
+                                    <input  name="gender" type="radio" value="female" <?php echo ($teacher->gender=='female')?'checked':'' ?>>Female
                                 </div>
+                                <div class="form-group">
+                                    <label>Qualification</label>
+
+                                    <input class="form-control" placeholder="Enter latest degree" name="qualification" id="qualification" value="{{ $teacher->qualification}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Salary</label>
+
+                                    <input class="form-control" placeholder="Salary" name="salary" id="salary"  value="{{ $teacher->salary}}">
+                                </div>
+                                 <div class="form-group">
+                                    <label>Date of Joining</label>
+                                    <input class="form-control" placeholder="Enter text" name="joindate" id="joindate"  value="{{ $teacher->joindate}}">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Assigned Class</label>
+                                <select id="assigned_class" class="form-control" name="assigned_class" onchange="">
+                                    @foreach($Levels as $tclass)
+                                    <option value="{{ $tclass->name }}">{{ $tclass->name }}</option>
+                                    @endforeach
+                                </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Religion</label>
                                     <input class="form-control" placeholder="Enter text" name="religion" value="{{ $teacher->religion }}">
@@ -80,10 +105,10 @@
                                     <input class="form-control" placeholder="Enter text" name="date_of_birth"  value="{{ $teacher->date_of_birth }}">
 
                                 </div>
-
                                 <div class="form-group">
-                                    <label>Apply For Class</label>
-                                    <input class="form-control" placeholder="Enter text" name="for_class"  value="{{ $teacher->for_class }}">
+                                    <label>Marital Status</label>
+                                    <input name="maritalstatus" type="radio" value="Unmarried" <?php echo ($teacher->maritalstatus=='Unmarried')?'checked':'' ?> >Unmarried &nbsp;
+                                    <input  name="maritalstatus" type="radio" value="Married" <?php echo ($teacher->maritalstatus=='Married')?'checked':'' ?>>Married
                                 </div>
 
 

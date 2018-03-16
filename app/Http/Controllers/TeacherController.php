@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Teacher;
 use App\Level;
 use Illuminate\Http\Request;
-
+use Auth;
 class TeacherController extends Controller
 {
     /**
@@ -61,10 +61,23 @@ class TeacherController extends Controller
 
         ]);
         $teacher=new Teacher;
+        $teacher->name=$request->name;
+        $teacher->father_name=$request->father_name;
+        $teacher->religion=$request->religion;
+        $teacher->address =$request->address;
+        $teacher->phone=$request->phone;
+        $teacher->email=$request->email;
+        $teacher->gender=$request->gender;
+        $teacher->qualification=$request->qualification;
+        $teacher->salary=$request->salary;
+        $teacher->maritalstatus=$request->maritalstatus;
+        $teacher->assigned_class=$request->assigned_class;
+        $teacher->joindate=$request->join_date;
+        $teacher->date_of_birth=$request->date_of_birth;
         $teacher->user_id= Auth::user()->id;//// Passing Current user id 
+		$teacher->save();
 
 
-       Teacher::create($request->all());
 
 
         return redirect()->route('teachers.index')
@@ -92,8 +105,9 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         //
+        $Levels = Level::all();
 
-        return view('teachers.edit',compact('teacher'));
+        return view('teachers.edit',compact('teacher','Levels'));
     }
 
     /**
