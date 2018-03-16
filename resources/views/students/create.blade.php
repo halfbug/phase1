@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Date of Birth</label>
-                                    <input class="form-control" placeholder="Enter text" name="date_of_birth">
+                                    <input class="form-control" placeholder="Select Date" name="date_of_birth" id="date_of_birth">
 
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <label>Apply For Class</label>
                                     <select id="level_id" class="form-control" name="level_id" onchange="" required>
                                         @foreach($Levels as $stclass)
-                                            <option value="{{ $stclass->name }}">{{ $stclass->name }}</option>
+                                            <option value="{{ $stclass->id }}">{{ $stclass->name }}</option>
                                         @endforeach
                                         @if ($errors->has('stclass_id'))
                                             <span class="help-block">
@@ -178,9 +178,15 @@
         }); //'#level_id on change
         </script>
 
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
-        $('#datepicker').datepicker({
+        $('#date_of_birth').datepicker({
+            autoclose: true,
+            format: 'dd-mm-yyyy'
+        });
+        $('#join_date').datepicker({
             autoclose: true,
             format: 'dd-mm-yyyy'
         });

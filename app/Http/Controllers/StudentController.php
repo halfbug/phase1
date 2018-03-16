@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\Level;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
@@ -50,12 +52,7 @@ public function get_classstudents(Request $request)
 
     //return response()->json(['response' => $studentslist]);
 }
-public function get_levels(Request $request)
-{
-    $levelslist = DB::table('levels')->get();
-    return view('create.blade.php',array('list'=>$levelslist));
 
-}
 
 
 
@@ -82,12 +79,23 @@ public function get_levels(Request $request)
             'phone' => '' ,
         'date_of_birth' => '',
        'for_class' => ' ',
-            'user_id'
 
         ]);
+        $student=new Student;
+        $student->name=$request->name;
+        $student->father_name=$request->father_name;
+        $student->religion=$request->religion;
+        $student->address =$request->address;
+        $student->phone=$request->phone;
+        $student->gender=$request->gender;
+        $student->level_id=$request->level_id;
+        $student->reg_no='reg1';
+        $student->date_of_birth=$request->date_of_birth;
 
+        $student->user_id= Auth::user()->id;
+       $student->save();
 
-       Student::create($request->all());
+    //   Student::create($request->all());
 
 
         return redirect()->route('students.index')

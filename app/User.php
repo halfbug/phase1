@@ -36,4 +36,9 @@ class User extends Authenticatable
 //        return "admin";
 //    }
 
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }
