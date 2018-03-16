@@ -60,6 +60,8 @@ class TeacherController extends Controller
 			'email' => 'required',
 
         ]);
+        $teacher=new Teacher;
+        $teacher->user_id= Auth::user()->id;//// Passing Current user id 
 
 
        Teacher::create($request->all());
