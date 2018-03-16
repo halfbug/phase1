@@ -17,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-
+        $Levels = Level::all();
         $students = Student::latest()->paginate(5);
 
 
@@ -89,10 +89,10 @@ public function get_classstudents(Request $request)
         $student->phone=$request->phone;
         $student->gender=$request->gender;
         $student->level_id=$request->level_id;
-        $student->reg_no='reg1';
+        $student->reg_no=$request->reg_no;
         $student->date_of_birth=$request->date_of_birth;
 
-        $student->user_id= Auth::user()->id;
+        $student->user_id= Auth::user()->id;//// Passing Current user id 
        $student->save();
 
     //   Student::create($request->all());
@@ -124,7 +124,8 @@ public function get_classstudents(Request $request)
     {
         //
 
-        return view('students.edit',compact('student'));
+        return view('students.edit', compact('student'));
+       // return view('students.edit',compact('student'));
     }
 
     /**

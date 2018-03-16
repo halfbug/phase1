@@ -40,6 +40,10 @@
                             @endif
                             <div class="col-lg-6">
                                 <div class="form-group">
+                                    <label >Registration No</label>
+                                    <input class="form-control" placeholder="Enter text" name="reg_no">
+                                </div>
+                                <div class="form-group">
                                     <label >Student Name</label>
                                     <input class="form-control" placeholder="Enter text" name="name">
                                 </div>
