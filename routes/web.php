@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students','StudentController');
 Route::resource('students.create','StudentController');
+Route::resource('courses', 'CourseController');
 
 Route::get( '/ajax-student', array(
 'as' => 'ajaxteach',
