@@ -32,3 +32,6 @@ Route::resource('teachers.create','TeacherController@create');
 
 ///attendance/////////////////////
 Route::resource('attendance', 'AttendanceController');
+
+// PARENTS///
+Route::resource('parents','ParentsController');

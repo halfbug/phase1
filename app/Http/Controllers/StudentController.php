@@ -92,7 +92,7 @@ public function get_classstudents(Request $request)
         $student->reg_no=$request->reg_no;
         $student->date_of_birth=$request->date_of_birth;
 
-        $student->user_id= Auth::user()->id;//// Passing Current user id 
+        $student->user_id= Auth::user()->id;//// Passing Current user id
        $student->save();
 
     //   Student::create($request->all());
