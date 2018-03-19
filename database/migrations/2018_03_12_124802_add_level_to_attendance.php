@@ -15,7 +15,7 @@ class AddLevelToAttendance extends Migration
     {
         Schema::table('attendances', function (Blueprint $table) {
 			$table->integer('level')->unsigned()->after('student_id'); // class name for which attendance id recorded
-            $table->foreign('level')->references('id')->on('level');            
+            $table->foreign('level')->references('id')->on('levels');            
             //
         });
     }

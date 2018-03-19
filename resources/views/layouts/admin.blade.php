@@ -106,16 +106,18 @@
                 <h2 class="h5">{{ Auth::user()->name }}</h2><span>{{ Auth::user()->roles[0]["name"]}}</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
-            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> >></a></div>
+            <div class="sidenav-header-logo"><a href="{{route('home')}}" class="brand-small text-center"> >></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li><a href="index.html"> <i class="icon-home"></i>Home                             </a></li>
-                <li><a href="forms.html"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
+                
+                <li><a href="{{route('home')}}"> <i class="icon-home"></i>Home                             </a></li>
+                <li><a href="{{route('students.index')}}"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
                 <li><a href="charts.html"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
-                <li><a href="tables.html"> <i class="fa fa-user-secret"></i>Teachers                           </a></li>
+                
+                <li><a href="{{route('teachers.index')}}"> <i class="fa fa-user-secret"></i>Teachers                           </a></li>
                 {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>--}}
                     {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
                         {{--<li><a href="#">Page</a></li>--}}
@@ -146,7 +148,7 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
-                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="{{route('home')}}" class="navbar-brand">
                             <div class="brand-text d-none d-md-inline-block"><strong class="text-primary">X2</strong><span>SMS </span></div></a></div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                         <!-- Notifications dropdown-->
@@ -234,7 +236,7 @@
     <div class="breadcrumb-holder">
         <div class="container-fluid">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                 <li class="breadcrumb-item active"> @yield('breadcrumb')</li>
             </ul>
         </div>

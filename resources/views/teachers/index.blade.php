@@ -28,17 +28,17 @@
             <th>Father Name</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($teachers as $teachers)
+        @foreach ($teachers as $teach)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $teachers->name }}</td>
-                <td>{{ $teachers->father_name }}</td>
+                <td>{{ $teach->name }}</td>
+                <td>{{ $teach->father_name }}</td>
                 <td>
-                    <form action="{{ route('students.destroy',$teachers->id) }}" method="POST">
+                    <form action="{{ route('teachers.destroy',$teach->id) }}" method="POST">
 
 
-                        <a class="btn btn-info" href="{{ route('students.show',$teachers->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('students.edit',$teachers->id) }}">Edit</a>
+                        <a class="btn btn-info" href="{{ route('teachers.show',$teach->id) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('teachers.edit',$teach->id) }}">Edit</a>
 
 
                         @csrf
@@ -53,7 +53,6 @@
     </table>
 
 
-    {!! $teachers->links() !!}
 
 
 @endsection

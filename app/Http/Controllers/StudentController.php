@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Level;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
@@ -14,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-
+        $Levels = Level::all();
         $students = Student::latest()->paginate(5);
 
 
@@ -38,24 +41,26 @@ class StudentController extends Controller
  
 public function get_classstudents(Request $request)
 {
-    $level_namee = $request->level_name;          
-	$studentslist = \DB::table("students")
-                ->select("id","name")
-                ->where('for_class','=',$level_namee)
-                ->get();
+    $level_namee = $request->level_name;
+    $studentslist = \DB::table("students")
+        ->select("id", "name")
+        ->where('for_class', '=', $level_namee)
+        ->get();
     //$studentslist = Student::all()->where('for_class', '=', $level_namee)->get();
-	
+
     return response()->json($studentslist);
-	
+
     //return response()->json(['response' => $studentslist]);
 }
+
 
 
 
  public function create()
     {
         //
-        return view('students.create');
+        $Levels = Level::all();
+        return view('students.create', compact('Levels'));
     }
 
     /**
@@ -76,9 +81,21 @@ public function get_classstudents(Request $request)
        'for_class' => ' ',
 
         ]);
+        $student=new Student;
+        $student->name=$request->name;
+        $student->father_name=$request->father_name;
+        $student->religion=$request->religion;
+        $student->address =$request->address;
+        $student->phone=$request->phone;
+        $student->gender=$request->gender;
+        $student->level_id=$request->level_id;
+        $student->reg_no=$request->reg_no;
+        $student->date_of_birth=$request->date_of_birth;
 
+        $student->user_id= Auth::user()->id;//// Passing Current user id 
+       $student->save();
 
-       Student::create($request->all());
+    //   Student::create($request->all());
 
 
         return redirect()->route('students.index')
@@ -107,7 +124,8 @@ public function get_classstudents(Request $request)
     {
         //
 
-        return view('students.edit',compact('student'));
+        return view('students.edit', compact('student'));
+       // return view('students.edit',compact('student'));
     }
 
     /**

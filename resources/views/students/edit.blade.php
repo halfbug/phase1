@@ -77,13 +77,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Date of Birth</label>
-                                    <input class="form-control" placeholder="Enter text" name="date_of_birth"  value="{{ $student->date_of_birth }}">
+                                    <input class="form-control" placeholder="Enter text" id="date_of_birth" name="date_of_birth"  value="{{ $student->date_of_birth }}">
 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apply For Class</label>
-                                    <input class="form-control" placeholder="Enter text" name="for_class"  value="{{ $student->for_class }}">
+                                    <input class="form-control" placeholder="Enter text"  name="level_id"  value="{{ $student->level_id }}">
+
                                 </div>
 
 
@@ -119,4 +120,52 @@
 
 @endsection
 
+@section('script')
 
+    <script>
+        $('#level_id').on('change',function(e){
+            var level_name = $('#level_id option:selected').attr('value');
+            //$("#datatable").html(level_name);
+            //var info=$.get("{{url('ajax-student')}}",{level_name:level_name});
+            //$("#datatable").html(info);
+            $.ajax({
+                type: "GET",
+                url : "{{url('ajax-student')}}",
+                dataType: 'json',
+                data : {level_name:level_name},
+                success : function(response){
+                    // compile_datatable(response);
+                    var joi=JSON.stringify(response);
+                    console.log(response);
+                    var thead='<thead><tr>'+
+                        '<th>Register No.</th>'+
+                        '<th>Student Name</th>'+
+                        '<th>Attendance</th>'+
+                        '</tr></thead>';
+                    $("#datatable1").empty();
+                    $("#datatable1").append('<h2>Students of '+level_name+'</h2><br>');
+                    $("#datatable1").append(thead);
+
+                    $.each(response, function(index, value) {
+
+                        var radiobtn='<div class="form-group">'+
+                            '<label class="radio-inline">'+
+                            '<input type="radio" name="radio'+value.id+'" value="1" checked> Present'+
+                            '</label>'+'<label class="radio-inline">'+
+                            '<input type="radio" name="radio'+value.id+'" value="0"> Absent'+
+                            '</label>'+'</div>';
+                        $("#datatable1").append(value.name+' '+radiobtn);
+
+                    })//foreach;
+//success close
+                },
+                error: function(response){
+                    console.log('Error'+response);
+                }//error close
+            });
+
+
+        }); //'#level_id on change
+    </script>
+
+@endsection

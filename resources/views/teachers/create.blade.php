@@ -55,6 +55,16 @@
                                     <input checked="checked" name="gender" type="radio" value="male" >Male &nbsp;
                                     <input  name="gender" type="radio" value="female">Female
                                 </div>
+                                <div class="form-group">
+                                    <label>Qualification</label>
+
+                                    <input class="form-control" placeholder="Enter latest degree" name="qualification" id="qualification">
+                                </div>
+                                <div class="form-group">
+                                    <label>Salary</label>
+
+                                    <input class="form-control" placeholder="Salary" name="salary" id="salary">
+                                </div>
                                  <div class="form-group">
                                     <label>Date of Joining</label>
                                     <input class="form-control" placeholder="Enter text" name="join_date" id="join_date">

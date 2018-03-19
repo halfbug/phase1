@@ -8,7 +8,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <form method="post" action="{{route('teachers.update',$teachers->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{route('teachers.update',$teacher->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -34,50 +34,66 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label >Teacher Name</label>
-                                    {{ $teachers->name }}
+                                    {{ $teacher->name }}
                                 </div>
 
 
 
                                 <div class="form-group">
                                     <label>Father's Name </label>
-                                   {{ $teachers->father_name}}
+                                   {{ $teacher->father_name}}
 
                                 </div>
                                 <div class="form-group">
                                     <label>Gender</label>
-                                    {{ $teachers->gender }}
+                                    {{ $teacher->gender }}
 
 
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                   {{ $teacher->email }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Joining Date</label>
+                                   {{ $teacher->joindate }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Assigned Class</label>
+                                   {{ $teacher->assigned_class }}
                                 </div>
                                 <div class="form-group">
                                     <label>Religion</label>
-                                   {{ $teachers->religion }}
+                                   {{ $teacher->religion }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Religion</label>
+                                   {{ $teacher->religion }}
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                   {{ $teachers->address }}
+                                   {{ $teacher->address }}
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                   {{ $teachers->phone }}
+                                   {{ $teacher->phone }}
                                 </div>
 
 
                                 <div class="form-group">
                                     <label>Email</label>
-                                    {{ $teachers->email }}
+                                    {{ $teacher->email }}
 
                                 </div>
                                 <div class="form-group">
                                     <label>Date of Birth</label>
-                                  {{ $teachers->date_of_birth }}
+                                  {{ $teacher->date_of_birth }}
 
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apply For Class</label>
-                                  {{ $teachers->for_class }}
+                                  {{ $teacher->for_class }}
                                 </div>
 
 
