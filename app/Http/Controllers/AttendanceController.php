@@ -55,7 +55,7 @@ class AttendanceController extends Controller
 		$date = $request->input('datepicker');
 		$allstud[]=$request->get('stid');
 		foreach($this->request->get('radio') as $b => $y) {
-		echo $st_id;
+
            Attendance::create(array('stid'$b => $name));
 		}
 		return redirect()->route('attendance.index')

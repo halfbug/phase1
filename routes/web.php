@@ -38,3 +38,6 @@ Route::resource('attendance', 'AttendanceController');
 Route::resource('parents','ParentsController');
 
 Route::resource('parents.update','ParentsController@update');
+
+// LEVELS
+Route::resource('levels','LevelsController');
