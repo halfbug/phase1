@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+
 
 
 class ParentsController extends Controller
@@ -60,10 +62,10 @@ class ParentsController extends Controller
 
 
         ]);
-       $parents=new Parents();
+       $parent=new Parents();
        $students=new Student();
 
-        $insertedId = $students->id;
+       $studentid=Session::get('id');
 
 
 
@@ -71,24 +73,24 @@ class ParentsController extends Controller
      //   $item = student::firstOrNew(array('id' => Input::get('id')));
        // $item->id = Input::get('id');
 
-        $parents->mother_name=$request->mother_name;
-       $parents->student_id='1';
-        $parents->address=$request->address;
-        $parents->m_home_phone =$request->m_home_phone;
-        $parents->m_work_phone=$request->m_work_phone;
-        $parents->m_email=$request->m_email;
-        $parents->father_name=$request->father_name;
-        $parents->father_job=$request->father_jon;
-        $parents->f_home_phone=$request->f_home_phone;
-        $parents->f_work_phone=$request->f_work_phone;
-        $parents->f_email=$request->f_email;
-        $parents->best_time_contact=$request->best_time_contact;
-        $parents->guard_name=$request->guard_name;
-        $parents->guard_add=$request->guard_add;
-        $parents->guard_phone=$request->guard_phone;
-        $parents->guard_email=$request->guard_email;
-        $parents->user_id= Auth::user()->id;//// Passing Current user id
-        $parents->save();
+        $parent->mother_name=$request->mother_name;
+       $parent->student_id=$studentid;
+        $parent->address=$request->address;
+        $parent->m_home_phone =$request->m_home_phone;
+        $parent->m_work_phone=$request->m_work_phone;
+        $parent->m_email=$request->m_email;
+        $parent->father_name=$request->father_name;
+        $parent->father_job=$request->father_jon;
+        $parent->f_home_phone=$request->f_home_phone;
+        $parent->f_work_phone=$request->f_work_phone;
+        $parent->f_email=$request->f_email;
+        $parent->best_time_contact=$request->best_time_contact;
+        $parent->guard_name=$request->guard_name;
+        $parent->guard_add=$request->guard_add;
+        $parent->guard_phone=$request->guard_phone;
+        $parent->guard_email=$request->guard_email;
+        $parent->user_id= Auth::user()->id;//// Passing Current user id
+        $parent->save();
 
 
 
@@ -99,45 +101,59 @@ class ParentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Parents  $parents
+     * @param  \App\Parents  $parent
      * @return \Illuminate\Http\Response
      */
-    public function show(Parents $parents)
+    public function show(Parents $parent)
     {
-        //
+        return view('parents.show',compact('parent'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Parents  $parents
+     * @param  \App\Parents  $parent
      * @return \Illuminate\Http\Response
      */
-    public function edit(Parents $parents)
+    public function edit(Parents $parent)
     {
-        //
+        return view('parents.edit', compact('parent'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Parents  $parents
+     * @param  \App\Parents  $parent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Parents $parents)
+    public function update(Request $request, Parents $parent)
     {
-        //
+        request()->validate([
+            'mother_name' => 'required',
+            'father_name' => 'required',
+        ]);
+
+
+        $parent->update($request->all());
+
+
+        return redirect()->route('parents.index')
+            ->with('success','Parents record updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Parents  $parents
+     * @param  \App\Parents  $parent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Parents $parents)
+    public function destroy(Parents $parent)
     {
-        //
+        $parent->delete();
+
+
+        return redirect()->route('parents.index')
+            ->with('success','Parents Record deleted successfully');
     }
 }

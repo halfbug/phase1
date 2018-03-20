@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Parents;
 use App\Student;
 use App\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class StudentController extends Controller
@@ -94,7 +96,12 @@ public function get_classstudents(Request $request)
 
         $student->user_id= Auth::user()->id;//// Passing Current user id
        $student->save();
+        Session::put('id', $student->id);
 
+
+
+
+// insert student id into parents table
     //   Student::create($request->all());
 
 

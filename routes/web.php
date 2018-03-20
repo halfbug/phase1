@@ -36,3 +36,5 @@ Route::resource('attendance', 'AttendanceController');
 
 // PARENTS///
 Route::resource('parents','ParentsController');
+
+Route::resource('parents.update','ParentsController@update');

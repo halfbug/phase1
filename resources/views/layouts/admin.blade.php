@@ -115,7 +115,7 @@
                 
                 <li><a href="{{route('home')}}"> <i class="icon-home"></i>Home                             </a></li>
                 <li><a href="{{route('students.index')}}"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
-                <li><a href="charts.html"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
+                <li><a href="{{route('parents.index')}}"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
                 
                 <li><a href="{{route('teachers.index')}}"> <i class="fa fa-user-secret"></i>Teachers                           </a></li>
                 {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>--}}
