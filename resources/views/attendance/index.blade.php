@@ -1,4 +1,4 @@
-@extends('students.layout')
+@extends('layouts.admin')
 
 
 @section('content')
@@ -8,7 +8,7 @@
                 <h2>Attendance Registration</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('home') }}">Home</a> | <a class="btn btn-success" href="{{ route('attendance.create') }}"> Create New Attendance</a>
+               <a class="btn btn-success" href="{{ route('attendance.create') }}"> Create New Attendance</a>
             </div>
         </div>
     </div>

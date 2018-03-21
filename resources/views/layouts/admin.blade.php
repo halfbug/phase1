@@ -115,7 +115,7 @@
                 
                 <li><a href="{{route('home')}}"> <i class="icon-home"></i>Home                             </a></li>
                 <li><a href="{{route('students.index')}}"> <i class="fa fa-address-card-o"></i>Students                             </a></li>
-                <li><a href="charts.html"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
+                <li><a href="{{route('parents.index')}}"> <i class="fa fa-user-circle"></i>Parents                             </a></li>
                 
                 <li><a href="{{route('teachers.index')}}"> <i class="fa fa-user-secret"></i>Teachers                           </a></li>
                 {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>--}}
@@ -134,11 +134,11 @@
         <div class="admin-menu">
             <h5 class="sidenav-heading">Administrations</h5>
             <ul id="side-admin-menu" class="side-menu list-unstyled">
-                <li> <a href="{{url("/users")}}"> <i class="icon-screen"> </i>Users</a></li>
-                <li> <a href="#"> <i class="icon-flask"> </i>User Log
+                <li> <a href="{{url("/users")}}"> <i class="icon-user"> </i>Users</a></li>
+                <li> <a href="#"> <i class="icon-line-chart"> </i>User Log
                         <div class="badge badge-info">Recent Activities</div></a></li>
-                <li> <a href=""> <i class="icon-flask"> </i>Notifications</a></li>
-                <li> <a href=""> <i class="icon-picture"> </i>General Settings</a></li>
+                <li> <a href=""> <i class="icon-padnote"> </i>News Letters</a></li>
+                <li> <a href=""> <i class="fa fa-globe"> </i>General Settings</a></li>
             </ul>
         </div>
     </div>
@@ -255,7 +255,7 @@
                     <p>X2sms &copy; 2017-2019</p>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <p>Design by <a href="https://businessjot.coms" class="external">Businessjot.com</a></p>
+                    {{--<p>Design by <a href="https://businessjot.coms" class="external">Businessjot.com</a></p>--}}
                     <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
                 </div>
             </div>
