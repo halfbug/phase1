@@ -41,3 +41,5 @@ Route::resource('parents.update','ParentsController@update');
 
 // LEVELS
 Route::resource('levels','LevelsController');
+
+Route::resource('timetables','TimetableController');
