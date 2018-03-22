@@ -17,11 +17,25 @@ class TimetableController extends Controller
     public function index()
     {
         $Levels = Level::all();
-        $Courses = Course::all();
+     //  $Courses = Course::all();
+$timetable=Timetable::with('Course')->get();
 
+        //$timetable=Timetable::with('Level')->get();
         $timetable = Timetable::latest()->paginate(5);
         return view('timetables.index',compact('timetable','Levels','Courses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+
+    public function getLevelName()
+    {
+        $levelid = DB::table("courses")->pluck("level_id");
+        $levelname = DB::table("levels")->whereIn('id', $levelid)->pluck("name","id");
+        return view('timetable.index')->with([
+            'id'   => $levelid,
+            'name'    => $levelname,
+
+        ]);
     }
 
     /**

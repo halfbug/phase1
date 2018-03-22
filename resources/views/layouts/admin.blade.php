@@ -128,6 +128,9 @@
                 <li><a href="{{route('courses.index')}}"> <i class="icon-interface-windows"></i>Courses                             </a></li>
                 <li><a href="{{route('levels.index')}}"> <i class="icon-interface-windows"></i>Levels                            </a></li>
 
+                <li><a href="{{route('timetables.index')}}"> <i class="icon-interface-windows"></i>Time Table                            </a></li>
+
+
                 <li><a href="{{route('attendance.index')}}"> <i class="icon-interface-windows"></i>Attendance                             </a></li>
                 <li> <a href="#"> <i class="icon-mail"></i>Complains
                         <div class="badge badge-warning">6 New</div></a></li>

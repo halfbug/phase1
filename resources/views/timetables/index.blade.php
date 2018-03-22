@@ -25,17 +25,19 @@
         <tr>
             <th>No</th>
             <th>Course Name</th>
+
             <th>Start Date </th>
             <th>End  Date </th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($timetable as $time_table)
+    @foreach ($timetable as $time_table)
             <tr>
                 <td>{{ ++$i }}</td>
 
 
 
-                    <td>{{ $time_table->course_id }}</td>
+                    <td>{{ $time_table->course->name }}</td>
+
 
 
 
