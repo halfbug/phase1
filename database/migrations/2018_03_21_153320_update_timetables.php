@@ -13,7 +13,7 @@ class UpdateTimetables extends Migration
      */
     public function up()
     {
-        Schema::create('timetables', function (Blueprint $table) {
+        Schema::table('timetables', function (Blueprint $table) {
             $table->string('start_date');
             $table->string('end_date');
         });
